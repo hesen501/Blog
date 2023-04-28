@@ -9,14 +9,20 @@
                     <!-- Post preview-->
                     @foreach ($posts as $post)
                       <div class="post-preview">
-                        <a href="{{route('post-single',[$post->category->slug,$post->slug])}}">
+                        <a href="{{route('post-single',$post->slug)}}">
                             <h2 class="post-title">{{$post->title}}</h2>
                             <img src="{{asset($post->image)}}" alt="">
                             <h3 class="post-subtitle">{!!Str::limit($post->description, 200)!!}</h3>
                         </a>
                         <p class="post-meta">
                             Category:
-                            <a href="#!">{{$post->category->name}}</a>
+                            <a href="#!">
+                                @if ($post->category_id>0)
+                                {{$post->category->name}}
+                            @else
+                                {{'empty'}}
+                            @endif
+                            </a>
                             <span class="float-right">posted on {{$post->created_at->format('M d,Y')}}</span> 
                         </p>
                         </div>  

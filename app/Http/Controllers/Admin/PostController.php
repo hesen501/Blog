@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Post\StoreRequest;
+use App\Http\Requests\Admin\Post\UpdateRequest;
 
 class PostController extends Controller
 {
@@ -14,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts=Post::query()->with('category')->get();
+
+        return view('admin.pages.posts.index',compact('posts'));
     }
 
     /**
@@ -24,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.posts.create');
     }
 
     /**
@@ -33,9 +39,13 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $data=$request->all();
+        $data['slug']=Str::slug($request->name);
+        Post::create($data);
+        
+        return redirect()->back()->with('success','Post Created Successfully');
     }
 
     /**
@@ -46,7 +56,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post=Post::query()->with('category')->findOrFail($id);
+
+        return view('admin.pages.posts.show',compact('post'));
     }
 
     /**
@@ -57,7 +69,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post=Post::query()->with('category')->findOrFail($id);
+
+        return view('admin.pages.posts.edit',compact('post'));
     }
 
     /**
@@ -67,9 +81,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        $data=$request->all();
+        $data['slug']=Str::slug($request->name);
+        $post=Post::query()->findOrFail($id);
+        $post->update($data);
+        
+        return redirect()->back()->with('success','Post Updated Successfully');
     }
 
     /**
@@ -80,6 +99,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::query()->findOrFail($id)->delete();
+
+        return redirect()->back()->with('success','Post Deleted Successfully');
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Category\Request;
+use App\Models\Post;
 
 class CategoryController extends Controller
 {
@@ -38,7 +40,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->all());
+        $data=$request->all();
+        $data['slug']=Str::slug($request->name);
+        Category::create($data);
         
         return redirect()->back()->with('success','Category Created Successfully');
     }
@@ -49,9 +53,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $category=Category::query()->whereSlug($slug);
+        $category=Category::query()->findOrFail($id);
+
         return view('admin.pages.categories.show',compact('category'));
     }
 
@@ -61,9 +66,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $category=Category::query()->whereSlug($slug);
+        $category=Category::query()->findOrFail($id);
 
         return view('admin.pages.categories.edit',compact('category'));
     }
@@ -75,10 +80,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        Category::query()->whereSlug($slug)->update($request->all());
-
+        $data=$request->all();
+        $data['slug']=Str::slug($request->name);
+        $category=Category::query()->findOrFail($id);
+        $category->update($data);
+        
         return redirect()->back()->with('success','Category Updated Successfully');
     }
 
@@ -90,7 +98,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::query()->findOrFail($id)->delete();
+        $category=Category::query()->findOrFail($id);
+        $posts=Post::query()->with('category')->where('category_id',$id)->update(['category_id'=>0]);
+        $category->delete();
 
         return redirect()->back()->with('success','Category Deleted Successfully');
     }

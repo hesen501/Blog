@@ -19,11 +19,11 @@ class CategorySeeder extends Seeder
         $categories=['Category1','Category2','Category3','Category4'];
         foreach($categories as $category){
             $data=[
+                'id'=>0,
                 'name'=>$category,
                 'slug'=>Str::slug($category)
             ];
             Category::create($data);
         }
-            
     }
 }

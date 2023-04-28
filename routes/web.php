@@ -21,7 +21,7 @@ Route::get('/login',[AuthController::class,'index'])->name('login');
 Route::post('/login-submit',[AuthController::class,'login'])->name('login_submit');
 
 Route::get('/',[HomeController::class,'home'])->name('home');
-Route::get('/post/{category}/{slug}',[HomeController::class,'post_single'])->name('post-single');
+Route::get('/post/{slug}',[HomeController::class,'post_single'])->name('post-single');
 Route::get('/category/{slug}',[HomeController::class,'category'])->name('category');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/page/{page}',[HomeController::class,'page'])->name('page');

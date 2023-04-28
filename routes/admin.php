@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 Route::group(['middleware' => 'isLogin'], function () {
 
     Route::get('/',[AdminController::class,'index'])->name('dashboard');
-    Route::get('/logout',[AdminController::class,'logout'])->name('logout');
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
     Route::resources([
         'users' => UserController::class,
