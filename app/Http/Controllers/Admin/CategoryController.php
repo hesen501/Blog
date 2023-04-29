@@ -84,8 +84,7 @@ class CategoryController extends Controller
     {
         $data=$request->all();
         $data['slug']=Str::slug($request->name);
-        $category=Category::query()->findOrFail($id);
-        $category->update($data);
+        Category::query()->findOrFail($id)->update($data);
         
         return redirect()->back()->with('success','Category Updated Successfully');
     }
@@ -98,9 +97,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::query()->findOrFail($id);
-        $posts=Post::query()->with('category')->where('category_id',$id)->update(['category_id'=>0]);
-        $category->delete();
+        Post::query()->with('category')->where('category_id',$id)->update(['category_id'=>0]);
+        Category::query()->findOrFail($id)->delete();
 
         return redirect()->back()->with('success','Category Deleted Successfully');
     }
