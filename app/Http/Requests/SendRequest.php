@@ -24,10 +24,10 @@ class SendRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname'=>'required|min:5',
-            'phone'=>'required|phone',
-            'email'=>'required|email',
-            'message'=>'required',
+            'fullname'  =>'required|min:5',
+            'phone'     =>'required|phone',
+            'email'     =>'required|email',
+            'message'   =>'required',
         ];
     }
 }

@@ -20,7 +20,7 @@
                             <th>image</th>
                             <th>Title</th>
                             <th>Category</th>
-                            <th>Title</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -35,6 +35,11 @@
                             @else
                                 {{'empty'}}
                             @endif
+                            <td>@if($post->status==0)  
+                                <span class='text-danger'>Passive</span>
+                                @else 
+                                <span class='text-success'>Active</span></td>
+                                @endif
                             </td>
                             <td>
                                 <a href="{{route('admin.posts.edit',$post->id)}}" class="btn btn-primary btn-circle btn-sm">

@@ -12,6 +12,7 @@ Route::group(['middleware' => 'isLogin'], function () {
 
     Route::get('/',[AdminController::class,'index'])->name('dashboard');
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/post/delete/{id}',[PostController::class,'postDelete'])->name('postDelete');
 
     Route::resources([
         'users' => UserController::class,

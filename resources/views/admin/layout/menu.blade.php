@@ -16,7 +16,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item @if(Request::segment(2)=='posts') active @endif">
             <a class="nav-link" href="index.html">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
@@ -26,18 +26,17 @@
         <hr class="sidebar-divider">
 
 
-
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#post"
+            <a class="nav-link @if(Request::segment(2)=="posts") in @else collapsed @endif" href="#" data-toggle="collapse" data-target="#post"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Posts</span>
             </a>
             <div id="post" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{route('admin.posts.index')}}">Posts</a>
-                    <a class="collapse-item" href="{{route('admin.posts.create')}}">Create a post</a>
+                    <a class="collapse-item @if(Request::segment(2)=="posts") show  @endif" href="{{route('admin.posts.index')}}">Posts</a>
+                    <a class="collapse-item @if(Request::segment(2)=="posts") show  @endif" href="{{route('admin.posts.create')}}">Create a post</a>
                 </div>
             </div>
         </li>

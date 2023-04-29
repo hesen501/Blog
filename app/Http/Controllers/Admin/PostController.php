@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::query()->with('category')->get();
+        $posts=Post::query()->get();
 
         return view('admin.pages.posts.index',compact('posts'));
     }
@@ -56,7 +56,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post=Post::query()->with('category')->findOrFail($id);
+        $post=Post::query()->findOrFail($id);
 
         return view('admin.pages.posts.show',compact('post'));
     }
@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post=Post::query()->with('category')->findOrFail($id);
+        $post=Post::query()->findOrFail($id);
 
         return view('admin.pages.posts.edit',compact('post'));
     }
@@ -97,6 +97,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id)
+    {
+        Post::query()->findOrFail($id)->delete();
+
+        return redirect()->back()->with('success','Post Deleted Successfully');
+    }
     public function destroy($id)
     {
         Post::query()->findOrFail($id)->delete();
