@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::query()->get();
+        $posts=Post::query()->paginate(5);
 
         return view('admin.pages.posts.index',compact('posts'));
     }

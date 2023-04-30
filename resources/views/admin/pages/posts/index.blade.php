@@ -9,7 +9,7 @@
         <a href="{{route('admin.posts.create')}}" class="alert alert-primary">Create Post</a>
     </div>
     <!-- Page Heading -->
-
+    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -43,17 +43,17 @@
                             </td>
                             <td>
                                 <a href="{{route('admin.posts.edit',$post->id)}}" class="btn btn-primary btn-circle btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="fa fa-pen"></i>
                                 </a>
                                 <a href="{{route('admin.posts.show',$post->id)}}" class="btn btn-warning btn-circle btn-sm">
-                                    <i class="fas fa-eye"></i>
+                                    <i class="fa fa-eye"></i>
                                 </a>
                                 <form action="{{ route('admin.posts.destroy',$post->id) }}"
                                     method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-circle btn-sm">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fa fa-times"></i>
                                 </button>
                                 </form>
                             </td>
@@ -61,6 +61,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$posts->links()}}
             </div>
         </div>
     </div>

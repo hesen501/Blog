@@ -28,27 +28,27 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link @if(Request::segment(2)=="posts") in @else collapsed @endif" href="#" data-toggle="collapse" data-target="#post"
+            <a class="nav-link in" href="#" data-toggle="collapse" data-target="#post"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Posts</span>
             </a>
-            <div id="post" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="post" class="collapse @if(Request::segment(2)=="posts") show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item @if(Request::segment(2)=="posts") show  @endif" href="{{route('admin.posts.index')}}">Posts</a>
-                    <a class="collapse-item @if(Request::segment(2)=="posts") show  @endif" href="{{route('admin.posts.create')}}">Create a post</a>
+                    <a class="collapse-item" href="{{route('admin.posts.index')}}">Posts</a>
+                    <a class="collapse-item" href="{{route('admin.posts.create')}}">Create a post</a>
                 </div>
             </div>
         </li>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dropCategory"
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Categories</span>
             </a>
-            <div id="dropCategory" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="category" class="collapse @if(Request::segment(2)=="categories") show @endif " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('admin.categories.index')}}">Categories</a>
                     <a class="collapse-item" href="{{route('admin.categories.create')}}">Create a Category</a>
