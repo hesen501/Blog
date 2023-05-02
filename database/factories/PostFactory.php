@@ -22,7 +22,7 @@ class PostFactory extends Factory
         return [
             'category_id'=>fake()->numberBetween(1,4),
             'title'=>$title,
-            'image'=>fake()->imageUrl(600,300,'cats'),
+            'image'=>fake()->imageUrl(600,300,"cats"),
             'description'=>fake()->text(),
             'hit'=>0,
             'slug'=>Str::slug($title),

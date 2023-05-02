@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
 
@@ -30,7 +32,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.posts.create');
+        $categories=Category::query()->get();
+
+        return view('admin.pages.posts.create',compact('categories'));
     }
 
     /**
@@ -43,6 +47,7 @@ class PostController extends Controller
     {
         $data=$request->all();
         $data['slug']=Str::slug($request->name);
+        $data['image'] = $request->file('image')->store('posts','public');
         Post::create($data);
         
         return redirect()->back()->with('success','Post Created Successfully');
@@ -70,8 +75,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post=Post::query()->findOrFail($id);
+        $categories=Category::query()->get();
 
-        return view('admin.pages.posts.edit',compact('post'));
+        return view('admin.pages.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -86,6 +92,10 @@ class PostController extends Controller
         $data=$request->all();
         $data['slug']=Str::slug($request->name);
         $post=Post::query()->findOrFail($id);
+        $data['image'] = $request->file('image')->store('posts','public');
+        if(File::exists('storage/'.$post->image)){
+            File::delete('storage/'.$post->image);
+        }
         $post->update($data);
         
         return redirect()->back()->with('success','Post Updated Successfully');

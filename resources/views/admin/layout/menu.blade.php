@@ -16,8 +16,8 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item @if(Request::segment(2)=='posts') active @endif">
-            <a class="nav-link" href="index.html">
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.dashboard')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>

@@ -27,7 +27,7 @@
                     <tbody>
                         @foreach ($posts as $post)
                         <tr>
-                            <td><img src="{{asset($post->image)}}" height="60px" width="100px" alt=""></td>
+                            <td><img src="{{ asset('storage/'.$post->image) }}" height="60px" width="100px" alt=""></td>
                             <td>{{$post->title}}</td>
                             <td>
                             @if ($post->category_id>0)

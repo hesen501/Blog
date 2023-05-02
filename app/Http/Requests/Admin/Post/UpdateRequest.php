@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,6 @@ class UpdateRequest extends FormRequest
             'title'      =>'required',
             'description'=>'required',
             'image'      =>'|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'hit'        =>'required',
         ];
     }
 }
