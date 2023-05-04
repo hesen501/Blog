@@ -107,16 +107,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
-    {
-        Post::query()->findOrFail($id)->delete();
+    // public function delete($id)
+    // {
+    //     Post::query()->findOrFail($id)->delete();
 
-        return redirect()->back()->with('success','Post Deleted Successfully');
-    }
+    //     return redirect()->back()->with('success','Post Deleted Successfully');
+    // }
     public function destroy($id)
     {
-        Post::query()->findOrFail($id)->delete();
-
+        $post=Post::query()->findOrFail($id);
+        if(File::exists('storage/'.$post->image)){
+            File::delete('storage/'.$post->image);
+        }
+        $post->delete();
         return redirect()->back()->with('success','Post Deleted Successfully');
     }
 }

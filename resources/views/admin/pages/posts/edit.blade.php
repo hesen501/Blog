@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea type="text" name="description" class="form-control" id="description" >{{$post->description}}</textarea>
+                    <textarea type="text" cols="20" rows="7" name="description" class="form-control"  id="description" >{{$post->description}}</textarea> te
                 </div>
                 <div class="form-group">
                     <label for="category">Category </label>
