@@ -47,7 +47,9 @@ class PostController extends Controller
     {
         $data=$request->all();
         $data['slug']=Str::slug($request->name);
-        $data['image'] = $request->file('image')->store('posts','public');
+        if($request->image){
+            $data['image'] = $request->file('image')->store('posts','public');
+        }
         Post::create($data);
         
         return redirect()->back()->with('success','Post Created Successfully');
@@ -92,9 +94,11 @@ class PostController extends Controller
         $data=$request->all();
         $data['slug']=Str::slug($request->name);
         $post=Post::query()->findOrFail($id);
-        $data['image'] = $request->file('image')->store('posts','public');
-        if(File::exists('storage/'.$post->image)){
-            File::delete('storage/'.$post->image);
+        if($request->image){
+            $data['image'] = $request->file('image')->store('posts','public');
+            if(File::exists('storage/'.$post->image)){
+                File::delete('storage/'.$post->image);
+            }
         }
         $post->update($data);
         
