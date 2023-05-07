@@ -25,7 +25,7 @@ class SendRequest extends FormRequest
     {
         return [
             'fullname'  =>'required|min:5',
-            'phone'     =>'required|phone',
+            'phone'     =>'required',
             'email'     =>'required|email',
             'message'   =>'required',
         ];

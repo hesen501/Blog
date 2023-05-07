@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\MessageController;
 
 Route::group(['middleware' => 'isLogin'], function () {
 
@@ -14,13 +15,16 @@ Route::group(['middleware' => 'isLogin'], function () {
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/post/delete/{id}',[PostController::class,'postDelete'])->name('postDelete');
 
+
     Route::resources([
-        'users' => UserController::class,
-        'posts' => PostController::class,
-        'categories' => CategoryController::class,
-        'pages' => PageController::class,
+        'users'         => UserController::class,
+        'posts'         => PostController::class,
+        'categories'    => CategoryController::class,
+        'pages'         => PageController::class,
+        'messages'      => MessageController::class,
     ]);
 });
+Route::get('pages/sort', [PageController::class, 'sort'])->name('pages.sort');
 
 
 Route::group(['middleware' => 'noLogin'], function () {

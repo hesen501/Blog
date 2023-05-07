@@ -6,6 +6,7 @@ use App\Models\Page;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Page\StoreRequest;
 use App\Http\Requests\Admin\Page\UpdateRequest;
 
@@ -116,5 +117,12 @@ class PageController extends Controller
         $page->delete();
 
         return redirect()->back()->with('success','Page Deleted Successfully');
+    }    
+    public function sort(Request $request)
+    {
+        return $request;
+        foreach($request->sorts as $order => $id) {
+            Page::where('id', $id)->update(['order' => $order]);
+        }
     }
 }
