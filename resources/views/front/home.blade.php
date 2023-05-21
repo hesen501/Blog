@@ -11,7 +11,7 @@
                       <div class="post-preview">
                         <a href="{{route('post-single',$post->slug)}}">
                             <h2 class="post-title">{{$post->title}}</h2>
-                            <img src="{{asset($post->image)}}" alt="">
+                            <img src="{{asset('storage/'.$post->image)}}" alt="">
                             <h3 class="post-subtitle">{!!Str::limit($post->description, 200)!!}</h3>
                         </a>
                         <p class="post-meta">

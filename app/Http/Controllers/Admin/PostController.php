@@ -46,7 +46,7 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data=$request->all();
-        $data['slug']=Str::slug($request->name);
+        $data['slug']=Str::slug($request->title);
         if($request->image){
             $data['image'] = $request->file('image')->store('posts','public');
         }
@@ -92,7 +92,7 @@ class PostController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $data=$request->all();
-        $data['slug']=Str::slug($request->name);
+        $data['slug']=Str::slug($request->title);
         $post=Post::query()->findOrFail($id);
         if($request->image){
             $data['image'] = $request->file('image')->store('posts','public');

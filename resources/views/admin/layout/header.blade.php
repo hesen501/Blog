@@ -13,11 +13,13 @@
 
     @stack('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+
     <!-- Custom styles for this template-->
     <link href="{{ asset('back/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('back/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-
+    <!-- Custom styles for this template-->
+    <link href="{{ asset('back/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 

@@ -1,7 +1,7 @@
 @extends('front.layout.master')
 @section('title',$post->title)
 @section('content')
-@section('bg',$post->image)
+@section('bg',asset('storage/'.$post->image))
 
 <!-- Post Content-->
 <div class="container px-4 px-lg-5">

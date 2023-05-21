@@ -48,20 +48,23 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('back/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
+    <script src="{{ asset('back') }}/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('back/js/sb-admin-2.min.js')}}"></script>
 
     <!-- Page level plugins -->
     <script src="{{asset('back/vendor/chart.js/Chart.min.js')}}"></script>
+    <!--  Ajax -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{asset('back/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('back/js/demo/chart-pie-demo.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('back') }}/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
     @stack('js')
 </body>
 

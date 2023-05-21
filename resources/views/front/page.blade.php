@@ -1,7 +1,7 @@
 @extends('front.layout.master')
 @section('title',$page->title)
 @section('content')
-@section('bg',$page->image)
+@section('bg', asset('storage/'.$page->image))
 
 <!-- Main Content-->
 <main class="mb-4">

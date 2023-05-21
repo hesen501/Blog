@@ -25,9 +25,8 @@ class HomeController extends Controller
 
         return view('front.home',compact('posts'));
     }    
-    public function post_single($category,$slug){
-        $category=Category::query()->whereSlug($category)->first() ?? abort(403,"Category does not exist");
-        $post=Post::query()->whereSlug($slug)->whereCategoryId($category->id)->first() ?? abort(403,"Post does not exist");
+    public function post_single($slug){
+        $post=Post::query()->whereSlug($slug)->first() ?? abort(403,"Post does not exist");
         $post->increment('hit');
 
         return view('front.post-single',compact('post'));
@@ -49,8 +48,7 @@ class HomeController extends Controller
     }    
     public function send(SendRequest $req){
 
-        $data=$req->all();
-        Message::create($data);
+        Message::create($req->all());
         
         return redirect()->back()->with('success','Message Sent Successfully');
    } 

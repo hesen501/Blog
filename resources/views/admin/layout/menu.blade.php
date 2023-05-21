@@ -69,6 +69,18 @@
                 </div>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#page"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Settings</span>
+            </a>
+            <div id="page" class="collapse @if(Request::segment(2)=="settings") show @endif " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{route('admin.settings.index')}}">Pages</a>
+                </div>
+            </div>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.messages.index')}}">
